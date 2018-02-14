@@ -1,0 +1,26 @@
+/* example_01_initialize_wam.cpp
+ *
+ * This is an example file that follows BarrettTechnology's exact example 1. 
+ * I am using this as experience in writing code to control the WAM
+ * 
+ * This is the simplest possible program that runs Barrett Technology's WAM Arm
+ * using the libbarrett controls library.
+ *
+ * Before running this program, make sure the WAM is powered on and connected to
+ * the Control PC. It can be either E-stopped or Idled.
+ *
+ * This code initializes the arm, allows the user to Shift-activate (thereby
+ * giving the robot permission to apply torques), and then (with a loop rate of
+ * 500 Hz) commands the WAM to apply zero torque to all of its joints. Since the
+ * motors aren't applying any torques, it will be easy to move the WAM by
+ * pushing it. The arm won't move on its own, but, if it's not already resting
+ * on its joint stops, gravity will cause it to fall. The program waits until
+ * the user Shift-idles the WAM and then exits.
+ * Terminating the program early (for example, by pressing Ctrl-C) will cause a
+ * heartbeat fault. Pressing an E-stop button will cause the program to
+ * terminate with an unhandled exception. If either of these occur, simply
+ * Shift-idle the WAM and it will again be ready to use.
+ *
+ */
+
+#include <barrett/systems.h>
