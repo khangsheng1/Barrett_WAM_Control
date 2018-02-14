@@ -24,3 +24,26 @@
  */
 
 #include <barrett/systems.h>
+#include <barrett/products/product_manager.h>
+
+// The file below defines Barrett's standard main() function (SMF). It helps you
+// initialize Barrett's products properly without having to repeat the necessary
+// code every time you make a new WAM program. See the documentation in
+// barrett/standard_main_function.h for more information. The SMF will call the
+// wam_main() function below once the WAM is ready to start applying torques.
+#include <barrett/standard_main_function.h>
+
+
+// The root namespace for libbarrett
+using namespace barrett;
+
+template<size_t DOF>
+int wam_main(int argc, char** argv, ProductManager& pm, systems::Wam<DOF>& wam){
+
+	// The WAM is now Shift-activated and applying zero torque with a loop-rate
+	// of 500Hz.
+  
+	// Wait for the user to press Shift-idle
+	pm.getSafetyModule()->waitForMode(SafetyModule::IDLE);
+	return 0;
+}
